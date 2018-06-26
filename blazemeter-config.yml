@@ -1,0 +1,9 @@
+---
+modules:
+  blazemeter:
+    project: "Taurus examples"
+    test: "blazedemo-cloud"
+    report-name: "latest"
+  jmeter:
+    version: 3.3
+    detect-plugins: true

@@ -1,0 +1,18 @@
+execution:
+- scenario: blazedemo
+  executor: jmeter
+  concurrency: 1
+  iterations: 1
+
+scenarios:
+  blazedemo:
+    requests:
+    - url: http://blazedemo.com/
+      label: Blazedemo request
+      assert:
+      - "Welcome"
+
+reporting:
+- module: passfail
+  criteria:
+  - failures>0%, stop as failed

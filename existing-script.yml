@@ -1,0 +1,19 @@
+execution:
+- scenario: blazedemo
+  executor: jmeter
+  concurrency: 1
+  iterations: 1
+
+scenarios:
+  blazedemo:
+    script: blazedemo.jmx
+
+modules:
+  jmeter:
+      properties:
+        server: blazedemo.com
+
+reporting:
+- module: passfail
+  criteria:
+  - failures>0%, stop as failed

@@ -1,0 +1,29 @@
+execution:
+- scenario: blazedemo
+  executor: jmeter
+  concurrency: 2
+  ramp-up: 10s
+  hold-for: 30s
+  locations:
+    eu-west-1: 1
+  locations-weighted: false
+
+scenarios:
+  blazedemo:
+    think-time: 0.75
+    requests:
+    - url: http://blazedemo.com/
+      label: Blazedemo request
+      assert:
+       - contains:
+         - 200
+         subject: http-code
+
+reporting:
+- module: final-stats
+  dump-xml: taurus-kpi-report.xml
+- module: passfail
+  criteria:
+  - p95>5000ms for 5s, stop as failed
+  - failures>0.001% for 5s, stop as failed
+  - failures>50% for 5s, stop as failed
